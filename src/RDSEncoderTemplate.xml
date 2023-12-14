@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="text"/>
+    <xsl:strip-space elements="*"/>
+
+    <xsl:variable name="newline">
+        <xsl:text>&#13;</xsl:text>
+    </xsl:variable>
+
+    <xsl:template match="/">
+        <xsl:apply-templates/>
+    </xsl:template>
+
+    <xsl:template match="LogEventCollection">
+        <xsl:for-each select="LogEvent">
+            <xsl:choose>
+                <xsl:when test="@Type='SONG'">
+                    <xsl:text>SONGTITLE=</xsl:text>
+                    <xsl:value-of select="Asset/@Title"/>
+                    <xsl:value-of select="$newline"/>
+                    <xsl:text>ARTISTNAME=</xsl:text>
+                    <xsl:value-of select="Asset/@Artist1"/>
+                    <xsl:value-of select="$newline"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>TEXT=</xsl:text>
+                    <xsl:text>KJHK 90.7 FM - The Sound Alternative</xsl:text>
+                    <xsl:value-of select="$newline"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:text>DURATION=</xsl:text>
+            <xsl:value-of select="@Duration"/>
+            <xsl:value-of select="$newline"/>
+        </xsl:for-each>
+        <xsl:apply-templates/>
+    </xsl:template>
+</xsl:stylesheet>
