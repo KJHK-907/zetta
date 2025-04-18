@@ -37,8 +37,6 @@ The Invonics Model 732 RDS Encoder recieves the metadata sent from Zetta via TCP
 
 Currently, the RDS Encoder template filters out non `SONG` metadata. In the future, we may want to add support for other metadata types such as `SPOT` and `BREAK`.
 
-For example, we could add a new `SPOT` template that would allow us to send the following metadata to the RDS Encoder:
-
 ### License
 
 Distributed under the GPL 3.0 License. See `LICENSE` for more information.
